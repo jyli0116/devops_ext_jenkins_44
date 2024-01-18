@@ -16,5 +16,10 @@ pipeline {
                 bat 'mvn test' 
             }
         }
+	stage('Deploy') {
+	    steps {
+		bat 'sudo cp -r target /'
+	    }
+	}
     }
 }
