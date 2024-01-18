@@ -1,15 +1,20 @@
 pipeline {
-    agent any
-    tools { 
-      maven 'mvn' 
-      jdk 'Java jdk 17.0.10' 
-    }
-    stages {
-        stage('Build') { 
+	agent any
+    	tools { 
+      		maven 'mvn' 
+      		jdk 'Java jdk 17.0.10' 
+    	}
+    	stages {
+        	stage('Build') { 
+            		steps {
+                		bat 'mvn compile'
+				bat 'mvn package'  
+            		}
+        	}
+    	}
+        stage('Test') {
             steps {
-                bat 'mvn compile'
-		bat 'mvn package'  
+                bat 'mvn test'
             }
         }
-    }
 }
