@@ -20,7 +20,7 @@ pipeline {
             steps{
                withCredentials([usernamePassword(credentialsId: 'HerokuID', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
 		    bat 'git add .'
-		    bat 'git commit ""'
+		    bat 'git commit " "'
                     bat 'git push https://$USER:$PASS@git.heroku.com/jenkins-simplewebapp.git main' } 
             }
         }
