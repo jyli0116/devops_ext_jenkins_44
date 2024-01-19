@@ -16,5 +16,11 @@ pipeline {
                 bat 'mvn test' 
             }
         }
+        stage('Deploy'){
+            steps{
+               withCredentials([usernameColonPassword(credentialsId: 'HerokuID', variable: 'PASS')]) {
+                    bat 'git push https://${PASS}@git.heroku.com/jenkins-simplewebapp.git main' } 
+            }
+        }
     }
 }
