@@ -18,7 +18,9 @@ pipeline {
         }
 	stage('Deploy') {
 	    steps {
-		bat 'sudo cp -r target /'
+		withCredentials([usernameColonPassword(credentialsId: 'Heroku1', variable: 'PASS')]) {
+			bat 'git push https//${PASS}@git.heroku.com/jenkins-simplewebapp.git main'
+		}
 	    }
 	}
     }
